@@ -68,3 +68,6 @@ CREATE TABLE Payment (
     paid_at    DATETIME DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (rental_id) REFERENCES Rental(rental_id)
 );
+
+-- Index to speed up "is this car free for these dates?" checks
+CREATE INDEX idx_rental_car_dates ON Rental (car_id, start_date, end_date);
